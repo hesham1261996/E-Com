@@ -39,15 +39,15 @@
         <!-- footer of card -->
         <div class="sec-card-footer">
 
-            <a href="pages/errorPage3.html" class="card-bag">
-                <img src="images/bag-card.svg"></i>
+            <a href="{{route('add-card' , $item->id)}}" class="card-bag">
+                <img src="{{asset('images/bag-card.svg')}}"></i>
             </a>
 
-            <div class="card-increment-decrement">
+            {{-- <div class="card-increment-decrement">
                 <span class="increment">+</span>
                 <span class="number">0</span>
                 <span class="decrement">-</span>
-            </div>
+            </div> --}}
         </div>
 
         @if ($item->discount > 0)

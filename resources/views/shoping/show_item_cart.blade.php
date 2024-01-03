@@ -3,7 +3,7 @@
 @section('body')
     @php
         $totalprice = 0;
-        $discount = 0 ;
+        $discount = 0;
     @endphp
     <section class="main-page">
         <div class="container">
@@ -24,27 +24,25 @@
                             {{ __('المنتجات') }}
                         </h4>
 
-                        @foreach ($item_of_cart as $item)
+                        @foreach ((array) session('card') as $id => $item)
                             @php
-                                $totalprice += $item->price * $item->pivot->number_of_copies;
-                                if ($item->discount != null) {
-                                    $discount += ( $item->price / $item->discount ) *  $item->pivot->number_of_copies ;
-                                }
+                                $tatal_price = 0 ;
                             @endphp
                             <div class="sec-cart-product">
                                 <div class="sec-cart-product-img-text">
                                     <div class="sec-cart-product-img">
-                                        <img src="images/{{ $item->image }}">
+                                        <img src="images/{{ $item['image'] }}">
                                     </div>
                                     <div class="sec-cart-product-text">
-                                        <h3>{{ $item->title }}</h3>
-                                        <p>{{ $item->description }}</p>
+                                        <h3>{{ $item['title'] }}</h3>
+                                        <p>{{ $item['description'] }}</p>
                                         <p class="sec-cart-product-text-price">
                                             <span
-                                                class="price-product">{{ __(' LE ') . number_format($item->price - ($item->price * $item->discount) / 100) }}
+                                                class="price-product">{{ number_format( $item['price'] * $item['quantity'] ) }}
                                             </span>
                                             <span
-                                                class="price-product-perv">{{ $item->discount != null ? $item->price : '' }}
+                                                class="price-product">
+                                                {{__('السعر الكلي')}}
                                             </span>
 
                                         </p>
@@ -52,9 +50,10 @@
                                 </div>
                                 <div class="sec-cart-product-sec2">
                                     <div class="sec-cart-product-sec2-quantity">
-                                        <span class="decrement">-</span>
-                                        <span class="number quantity-product">{{ $item->pivot->number_of_copies }} </span>
-                                        <span class="increment">+</span>
+                                        {{ $item['quantity'] . ' العدد' }}
+                                        {{-- <span class="decrement">-</span>
+                                        <span class="number quantity-product"></span>
+                                        <span class="increment">+</span> --}}
                                     </div>
                                     <div class="sec-cart-product-se2-delete delete">
                                         <img src="{{ asset('images/trash-2.svg') }}">
@@ -66,7 +65,7 @@
 
                     </div>
 
-                    <button onclick="window.location.href='{{route('cline_data')}}'">
+                    <button onclick="window.location.href='#'">
                         اتمام عمليه الشراء
                     </button>
                 </div>
@@ -79,23 +78,24 @@
                         <p style="display: flex; ">
                             {{ __('منتجات') }}
                             <!-- عدد المنتجات ال اختارها -->
-                            <span class="cart-quantity" style="margin-left: 4px;"> {{ $item_of_cart->count() }} </span>
+                            <span class="cart-quantity" style="margin-left: 4px;"> {{ count((array) session('card')) }}
+                            </span>
                         </p>
                     </div>
                     <div class="space"></div>
                     <!-- المجموع الفرعى للمنتجات -->
                     <div>
                         <span>
-                            {{__('المجموع قبل الخصم')}}
+                            {{ __('المجموع قبل الخصم') }}
                         </span>
-                        <span class="price price-All-products">{{$totalprice}}</span>
+                        <span class="price price-All-products"></span>
                     </div>
                     <!-- المخصوم -->
                     <div class="discard-sec">
                         <span>
-                            {{__('الخصم')}}
+                            {{ __('الخصم') }}
                         </span>
-                        <span class="price discard">{{ $item->discount != null ?  $discount.  __(' ج ') : '0' }}</span>
+                        <span class="price discard">#</span>
                     </div>
                     <!-- رسوم الخدمات -->
                     {{-- <div>
@@ -114,12 +114,18 @@
                     <!-- المجموع الكلى -->
                     <div>
                         <span>
-                        {{__('المجموع الكلى بعد الخصم')}}
+                            {{ __('المجموع الكلى بعد الخصم') }}
                         </span>
-                        <span class="price all-prices">{{ $item->discount != null ?  $totalprice -   $discount .  __(' ج '): $totalprice  }}</span>
+                        <span class="price all-prices">#</span>
                     </div>
                     <!-- مجموع كل السابق -->
-                    <div class="all-prices all-prices-sec">{{ $item->discount != null ?  $totalprice -   $discount .  __(' جنيه '): $totalprice    }}</div>
+                    @php
+                        $total_price = 0 ;
+                    @endphp
+                    @foreach (session('card')  as $item)
+                        @php $total_price += $item['price'] *  $item['quantity']; @endphp
+                    @endforeach
+                    <div class="all-prices all-prices-sec">{{number_format($total_price)}}</div>
                 </div>
 
 

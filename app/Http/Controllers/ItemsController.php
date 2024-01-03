@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Notifications;
 use App\Models\Category;
 use App\Models\Child;
 use App\Models\Company;
@@ -58,6 +59,12 @@ class ItemsController extends Controller
 
         $data['image'] = $image_name;
         Item::create($data);
+        $data = [
+            'item_title'        => $request->title ,
+            'category_title'    => Category::find($request->get('category_id'))->title  ,
+            'price'             => $request->price 
+        ]; 
+        event(new Notifications($data));
         session()->flash('flash_message', 'تم اضافه العنصر بنجاح');
         return redirect()->route('items.index', $item);
     }

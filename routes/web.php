@@ -42,6 +42,10 @@ Route::get('/item/{item}' ,[IndexController::class  , 'show_item'])->name('show.
 
 Route::get('/profile' , [ProfileController::class , 'edit'])->middleware('auth');
 
+// add card without user login
+Route::get('add-card/{id}' ,[ShopingController::class  , 'AddCard' ])->name('add-card');
+Route::get('show-card' , [ShopingController::class , 'ShowCard'])->name('show-card');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

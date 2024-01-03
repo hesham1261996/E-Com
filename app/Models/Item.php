@@ -55,7 +55,8 @@ class Item extends Model
     public function discount($item_id){
         $item = Item::find($item_id) ;
 
-        $discount = number_format($item->price - ( $item->price * $item->discount ) / 100 ) .'L.E';
-        return  $discount;
+        $discount = $item->price - ( $item->price * $item->discount ) / 100 ;
+        
+        return   $discount;
     }
 }
