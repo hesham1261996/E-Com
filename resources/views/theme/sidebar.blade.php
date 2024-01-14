@@ -72,9 +72,9 @@
                     <span>{{ __('الصلاحيات') }}</span></a>
             </li>
         @endif
-        
-        <li class="nav-item {{ request()->is('admin//allpurches') ? 'active' : '' }}">
-            <a class="nav-link text-right" href="#">
+
+        <li class="nav-item {{ request()->is('admin/purchas*') ? 'active' : '' }}">
+            <a class="nav-link text-right" href="{{route('all_purchas')}}">
                 <i class="fas fa-shopping-bag"></i>
                 <span>{{ __('المشتريات') }}</span></a>
         </li>

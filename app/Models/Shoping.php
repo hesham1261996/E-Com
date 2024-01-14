@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shoping extends Model
 {
+    
     use HasFactory;
     protected $table = ['item_user'];
 

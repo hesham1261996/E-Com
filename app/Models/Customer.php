@@ -15,8 +15,14 @@ class Customer extends Model
         'city',
         'details_address'
     ];
-    
+
     public function shoping(){
         return $this->belongsToMany(Shoping::class , 'customer_shoping');
     }
+
+    public function purchas(){
+        return $this->hasMany(purchas::class , 'customer_id');
+    }
+
+
 }

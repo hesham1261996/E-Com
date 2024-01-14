@@ -58,6 +58,7 @@
             <div></div>
         </div>
     </div>
+
     <!-- end loader -->
 
     <!-- up -->
@@ -71,6 +72,7 @@
 
     <!-- first --- header  -->
     <!-- sass/components/_firstheader-->
+
     <div class="row row-100vw first-tab">
         <div class="container first-header">
 
@@ -88,7 +90,11 @@
                 </li>
 
             </ul>
-
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
             <h2 class="d-none d-sm-none d-md-inline-block">
                 {{ __('مرحبا بك في موقع زودياك للكمبيوتر والموبايل') }}
             </h2>
@@ -101,11 +107,6 @@
     <!-- second tab -->
     <!-- sass/components/_secondHeader -->
     <div class="row row-100vw">
-        @if (session('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
         <div class="container second-tab wow slideInRight" data-wow-duration="2.5s">
             <div class="second-header">
                 <!-- mob toggle -->
@@ -115,16 +116,24 @@
 
                 <!-- للتسجيل الدخول وايضا للاشياء تم شرائه -->
                 <ul class="second-header-left login-sec-cart-second">
-                        <li class="d-none d-md-none d-lg-flex">
+                    <li class="d-none d-md-none d-lg-flex">
 
-                            <a href="{{route('show-card')}}">
-                                <div class="cart">
-                                    <img class="cart-img" src={{ asset('images/Bag-header.svg') }}>
-                                    <span class="cart-quantity">{{count((array) session('card'))}}</span>
-                                </div>
-                            </a>
-                            <span class="price-cart"> $0.00 </span>
-                        </li>
+                        <a href="{{ route('show-card') }}">
+                            <div class="cart">
+                                <img class="cart-img" src={{ asset('images/Bag-header.svg') }}>
+                                <span class="cart-quantity">{{ count((array) session('card')) }}</span>
+                            </div>
+                        </a>
+                        @php
+                            $total_price = 0;
+                        @endphp
+                        @if (session('card') != null)
+                            @foreach (session('card') as $item)
+                            @php $total_price += $item['price'] *  $item['quantity']; @endphp
+                            @endforeach
+                            <span class="price-cart"> {{number_format($total_price) . " LE"}} </span>
+                        @endif
+                    </li>
                     @guest
                         <li>
 
@@ -258,10 +267,10 @@
     <!-- page sections -->
     <section class="main-page">
 
-
         <!-- end ------- slider -->
         @yield('body')
     </section>
+
 
     <!-- footer -->
     <section class="footer wow slideInLeft" data-wow-duration="2s">
@@ -518,6 +527,6 @@
             })
         }
     </script>
-
+    @yield('script')
 
 </body>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('city');
             $table->text('details_address');
+            $table->integer('status_order')->default(1);
             $table->timestamps();
 
         });
