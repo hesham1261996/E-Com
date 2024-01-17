@@ -38,14 +38,6 @@
             </a>
         </li>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item {{ request()->is('admin/companies') ? 'active' : '' }}">
-            <a class="nav-link text-right" href="{{ route('companies.index') }}">
-                <i class="fas fa-pen-fancy"></i>
-                <span>{{ __('الشركات') }}</span>
-            </a>
-        </li>
-
         @if (auth()->user()->IsSuperAdmin())
             <!-- Nav Item - users -->
             <li class="nav-item {{ request()->is('admin/users') ? 'active' : '' }}">

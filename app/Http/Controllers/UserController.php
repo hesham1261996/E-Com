@@ -42,6 +42,7 @@ class UserController extends Controller
         $user->role_id = $request->role_id ;
         $user->password = Hash::make($request->password);
         $user->save();
+        return redirect()->back()->with('message_flash' , 'تم اضافه المستخدم');
     }
 
     /**

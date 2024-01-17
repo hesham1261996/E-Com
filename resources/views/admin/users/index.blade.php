@@ -36,7 +36,7 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control @error('password') is-invalid @enderror" name="password"
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
                                 placeholder="كلمة المرور">
                             @error('password')
                                 <span class="invalid-feedback">
@@ -83,7 +83,7 @@
                                         <select class="form-control form-control-sm" name="role_id">
                                             <option selected disabled>اختر نوعًا</option>
                                             <option value="1">مدير</option>
-                                            <option value="2">مدير عام</option>
+                                            <option value="2">مشرف</option>
                                             <option value="3">مستخدم</option>
                                         </select>
                                         <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-edit"></i>

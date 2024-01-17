@@ -30,7 +30,21 @@
             </tr>
             <tr>
                 <td>{{ __('حاله الطلب ') }}</td>
-                <td></td>
+                <td>
+                    <form class="ml-4 form-inline" method="POST" action="{{route('purchas_updata' , $customer->id)}}"
+                    style="display:inline-block">
+                    @method('PUT')
+                    @csrf
+                    <select class="form-control form-control-sm" name="status_order">
+                        <option {{$customer->status_order == 1 ? 'selected': '' }} value="1">جاري المراجعه</option>
+                        <option {{$customer->status_order == 2 ? 'selected': '' }} value="2">جاري الشحن</option>
+                        <option {{$customer->status_order == 3 ? 'selected': '' }} value="3">تم التوصيل</option>
+                        <option {{$customer->status_order == 4 ? 'selected': '' }} value="4">تم الالغاء</option>
+                    </select>
+                    <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-edit"></i>
+                        تعديل</button>
+                </form>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -64,12 +78,7 @@
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->price * $item->quantity }}L.E</td>
                             <td>
-                                @can('edit-item')
-                                    <a href="{{ route('items.edit', $item->id) }}" class="btn btn-info btn-sm"><i
-                                            class="fa fa-edit"></i>{{ __('تعديل') }}</a>
-                                @endcan
-                                @can('delete-item')
-                                    <form action="{{ route('items.destroy', $item->id) }}" method="post"
+                                    <form action="{{ route('delete_item_cart', $item->id) }}" method="post"
                                         class="d-inline-block">
                                         @method('DELETE')
                                         @csrf
@@ -77,7 +86,6 @@
                                             onclick="return confirm('هل انت متاكد؟')"><i
                                                 class="fa fa-trash"></i>{{ __('حذف') }}</button>
                                     </form>
-                                @endcan
                             </td>
                         </tr>
                         @php $total_price += $item->price *  $item->quantity @endphp

@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\CompaniesController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\PermissionController;
@@ -13,7 +10,6 @@ use App\Http\Controllers\PurchasController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopingController;
 use App\Http\Controllers\UserController;
-use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +35,6 @@ Route::post('search' , [ItemsController::class , 'search'])->name('search');
 Route::post('comment' , [\App\Http\Controllers\CommentController::class , 'store'])->name('comment');
 
 Route::get('/item/{item}' ,[IndexController::class  , 'show_item'])->name('show.item');
-//Route::get('/compaies' ,[ IndexController::class , 'companies'])->name('companies.home');
 
 Route::get('/profile' , [ProfileController::class , 'edit'])->middleware('auth');
 
@@ -62,14 +57,16 @@ Route::prefix('/admin')->middleware(['auth' , 'admin'])->group(function (){
     Route::get('/' , [AdminController::class , 'index'])->name('admin.index');
     Route::resource('/items', ItemsController::class );
     Route::resource('/categories', CategoriesController::class);
-    Route::resource('/companies', CompaniesController::class);
     Route::resource('/users' , UserController::class);
     Route::resource('/children' , \App\Http\Controllers\ChildrenController::class);
     Route::get('/permissions' , [PermissionController::class , 'index'])->name('permissions');
     Route::post('/permission', [PermissionController::class , 'store'])->name('edit.permission');
 
     Route::get('/purchas' , [PurchasController::class , 'index'])->name('all_purchas');
-    Route::get('/parchas_details/{id}' , [PurchasController::class , 'show'])->name('purchas.details');
+    Route::get('/parchas/details/{id}' , [PurchasController::class , 'show'])->name('purchas.details');
+    Route::put('parchas/{id}', [PurchasController::class , 'update'])->name('purchas_updata');
+    Route::delete('/purchas/{id}', [PurchasController::class , 'delete'])->name('purchas_delete');
+    Route::delete('/delete_item_cart/{id}' , [PurchasController::class , 'delete_item_cart'])->name('delete_item_cart');
 
     Route::resource('role' , RoleController::class);
     Route::get('permission_byRole' , [RoleController::class , 'getByRole'])->name('permission_byRole');

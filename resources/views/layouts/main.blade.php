@@ -124,15 +124,15 @@
                                 <span class="cart-quantity">{{ count((array) session('card')) }}</span>
                             </div>
                         </a>
-                        @php
+                        {{-- @php
                             $total_price = 0;
                         @endphp
                         @if (session('card') != null)
-                            @foreach (session('card') as $item)
+                            @foreach ((array)session('card') as $item)
                             @php $total_price += $item['price'] *  $item['quantity']; @endphp
                             @endforeach
                             <span class="price-cart"> {{number_format($total_price) . " LE"}} </span>
-                        @endif
+                        @endif --}}
                     </li>
                     @guest
                         <li>
@@ -221,8 +221,8 @@
 
 
                     <li class="nav-item">
-                        <a href="{{ route('companies.index') }}"
-                            class="{{ $_SERVER['REQUEST_URI'] == '/compaies' ? 'active' : '' }}">{{ __('الشركات') }}</a>
+                        <a href="{{route('categories.home')}}"
+                            class="{{ $_SERVER['REQUEST_URI'] == '/categories' ? 'active' : '' }}">{{ __('الاقسام') }}</a>
                     </li>
 
                     <li class="nav-item">

@@ -75,8 +75,8 @@ class ShopingController extends Controller
             session()->forget('card');
             session()->flash('card');
         }
-
         return redirect()->route('home');
+
     }
 
     public function remove($id) {

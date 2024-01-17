@@ -9,7 +9,7 @@ use App\Models\Customer;
 
 class Purchas extends Model
 {
-    protected $fillable = ['title' , 'price' , 'discount','quantity' , 'image'];
+    protected $fillable = ['title' , 'price' , 'discount','quantity' , 'image' , 'status_order'];
     use HasFactory;
 
     public function customer(){
