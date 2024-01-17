@@ -13,17 +13,14 @@ use PHPUnit\Event\SubscriberTypeAlreadyRegisteredException;
 class IndexController extends Controller
 {
     public function home(){
-        $items = Item::where('discount' , null)->orderBy('id' , 'DESC')->take(5)->get();
+        $items = Item::where('discount' , null)->orderBy('id' , 'DESC')->take(10)->get();
         $categories = Category::paginate(4);
         $offers = Item::whereNot('discount' , null )->get();
         $title = __('الرئيسيه');
 
         return view('index' , compact('items' , 'categories' , 'offers' , 'title'));
     }
-    public function companies(){
-        $companies = Company::paginate(10);
-        return view('companies.index' , compact('companies'));
-    }
+
 
     public function show_item($item){
         $item = Item::find($item);

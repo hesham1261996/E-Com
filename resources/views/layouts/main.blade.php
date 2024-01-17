@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
     <meta http-equiv="X-UA-compatible" content="IE-edge">
-    {{-- <link rel="shortcut icon" href="images/لوجو لذائذ.png" /> --}}
-    {{-- <link rel="icon" href="images/لوجو لذائذ.png" /> --}}
     <title>{{ isset($title) ? $title : __('Zodiac') }}</title>
     <!-- CSS only -->
     <link rel="stylesheet" href={{ asset('css/swiper-bundle.min.css') }} />
@@ -279,10 +277,7 @@
                 <div class="col-lg-2 footer-1 col-md-4 col-xs-6">
                     <h5>حسابي</h5>
                     <ul>
-                        <li> <a href="pages/errorPage3.html" class="footer-inf"> حسابي </a></li>
-                        <li> <a href="pages/errorPage3.html" class="footer-inf"> طلباتى </a></li>
-                        <li> <a href="pages/errorPage3.html" class="footer-inf">السله</a></li>
-                        <li><a href="pages/joinUs.html" class="footer-inf">تواصل معنا</a></li>
+                        <li> <a href="{{route('show-card')}}" class="footer-inf">السله</a></li>
                     </ul>
                 </div>
 
@@ -310,33 +305,25 @@
                     <h5 class="fast-arrive-h5"> الوصول السريع </h5>
                     <div class="fast-arrive" style="display: flex; justify-content: flex-end;">
                         <ul style="margin-right: 6rem;">
-                            <li>
-                                <a href="#" class="footer-inf">{{ __('كمبيوتر') }}</a>
-                            </li>
-                            <li><a href="#" class="footer-inf">{{ __('كمبيوتر') }}</a></li>
-                            <li><a href="#" class="footer-inf">{{ __('كمبيوتر') }}</a></li>
-                            <li><a href="pages/filterPage.html#spices" class="footer-inf">{{ __('كمبيوتر') }}</a>
+                            <li><a href="{{route('home')}}" class="footer-inf">{{ __('الرئيسه') }}</a>
                             </li>
                         </ul>
                         <ul>
                             <li>
-                                <a href="pages/filterPage.html#meat" class="footer-inf">{{ __('كمبيوتر') }}</a>
+                                <a href="{{route('categories.home')}}" class="footer-inf">{{ __('الاقسام') }}</a>
                             </li>
-                            <li><a href="pages/filterPage.html#zab2h" class="footer-inf">{{ __('كمبيوتر') }}</a></li>
-                            <li><a href="pages/filterPage.html#tools"class="footer-inf">{{ __('كمبيوتر') }}</a></li>
-                            <li><a href="pages/filterPage.html#spices" class="footer-inf">{{ __('كمبيوتر') }}</a>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 offset-md-2 offset-lg-0 col-xs-6 footer-join" style="margin-top: -5px;">
-                    <img src={{ asset('images/brand.svg') }}>
+                    <img src={{ asset('images/brandd.jpg') }}>
 
                     <div class="footor-join-call">
                         <div>
-                            <p>للاستفسار ؟ تواصل معنا</p>
-                            <a href="tel:+800800185880600874548">(800) 8001-8588,(0600) 874 548</a>
+                            <p>للاستفسار ؟ تواصل معناعلي واتس اب</p>
+                            <a href="https://wa.link/o8tz6e" target="_blank">01019975580</a>
                         </div>
                         <div>
                             <img src={{ asset('images/headphone.svg') }}>
@@ -344,8 +331,8 @@
                     </div>
 
                     <div class="footor-join-information">
-                        <h5>معلومات التواصل</h5>
-                        <p> المنصوره , الدقهليه, جمهوريه مصر العربيه , مجمع المحاكم 10 بلوك شارع المحكمه </p>
+                        <h5> </h5>
+                        <p></p>
                     </div>
 
                 </div>
@@ -354,18 +341,6 @@
         </div>
 
         <div class="container footer-before-footer">
-
-            <div>
-                <a href="https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.myapp">
-                    <img src={{ asset('images/app-store (1).svg') }} />
-                    <span>apple store</span>
-                </a>
-                <a href="https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.myapp">
-                    <img src={{ asset('images/google-play.svg') }} />
-                    <span>Google play</span>
-                </a>
-                <span class="d-none d-sm-inline-block">لتحميل التطبيق</span>
-            </div>
 
             <div>
                 <a href="" class="socail"><img src={{ asset('images/snapchat.png') }}></a>
@@ -381,7 +356,7 @@
         <div class="container">
             <div class="footer-footer-allrights">
                 <div>
-                    <span>لذائذ واطياب <span style="font-weight: 200;">
+                    <span>ZODIAC<span style="font-weight: 200;">
                             - All Rights Reserved
                         </span>
                     </span>
