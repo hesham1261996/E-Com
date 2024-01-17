@@ -55,14 +55,14 @@
 
             <div class="parent-col-1-4">
                 @foreach ($categories as $category)
+                <a href="{{route('show.category' , $category->id)}}"class="col-1-4-card" >
                     <div class="col-1-4 sec1-card fourth-card">
                         <img src="images/{{$category->image != null ? $category->image : "index.png"}}">
                         <div class="col-1-4-card">
-                            <a href="{{route('show.category' , $category->id)}}"class="col-1-4-card" >
                                 <span>{{ $category->title }}</span>
-                            </a>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </section>

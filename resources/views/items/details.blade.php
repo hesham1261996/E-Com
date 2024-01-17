@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <div class="product-page-sec1-3">
-                        <button class="submit btn-cart" onclick="window.location.href='cart.html'">
+                        <button class="submit btn-cart" onclick="window.location.href='{{route('add-card' , $item->id)}}'">
                             اضافه الى السله
                             <img src="../images/cart-svg.svg" alt="">
                         </button>

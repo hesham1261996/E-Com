@@ -126,7 +126,7 @@
                             $total_price = 0;
                         @endphp
                         @if (session('card') != null)
-                            @foreach ((array)session('card') as $item)
+                            @foreach ((array) session('card') as $item)
                             @php $total_price += $item['price'] *  $item['quantity']; @endphp
                             @endforeach
                             <span class="price-cart"> {{number_format($total_price) . " LE"}} </span>
@@ -184,6 +184,7 @@
                     </li>
 
                     <li>
+
                         <a href="\" class="brand">
                             {{ __('Zodiac') }}
                         </a>
@@ -219,7 +220,7 @@
 
 
                     <li class="nav-item">
-                        <a href="{{route('categories.home')}}"
+                        <a href="{{ route('categories.home') }}"
                             class="{{ $_SERVER['REQUEST_URI'] == '/categories' ? 'active' : '' }}">{{ __('الاقسام') }}</a>
                     </li>
 
@@ -277,7 +278,7 @@
                 <div class="col-lg-2 footer-1 col-md-4 col-xs-6">
                     <h5>حسابي</h5>
                     <ul>
-                        <li> <a href="{{route('show-card')}}" class="footer-inf">السله</a></li>
+                        <li> <a href="{{ route('show-card') }}" class="footer-inf">السله</a></li>
                     </ul>
                 </div>
 
@@ -305,12 +306,12 @@
                     <h5 class="fast-arrive-h5"> الوصول السريع </h5>
                     <div class="fast-arrive" style="display: flex; justify-content: flex-end;">
                         <ul style="margin-right: 6rem;">
-                            <li><a href="{{route('home')}}" class="footer-inf">{{ __('الرئيسه') }}</a>
+                            <li><a href="{{ route('home') }}" class="footer-inf">{{ __('الرئيسه') }}</a>
                             </li>
                         </ul>
                         <ul>
                             <li>
-                                <a href="{{route('categories.home')}}" class="footer-inf">{{ __('الاقسام') }}</a>
+                                <a href="{{ route('categories.home') }}" class="footer-inf">{{ __('الاقسام') }}</a>
                             </li>
                             </li>
                         </ul>
